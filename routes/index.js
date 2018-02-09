@@ -15,7 +15,9 @@ router.use(function(req, res, next){
 });
 //<----------------- Contact Portion -------------------------->
 router.get('/contacts', function(req, res) {
-   Contact.find(function(err,result) {
+  console.log(req.user)
+
+   Contact.find({owner:req.user}, function(err,result) {
      res.render('contacts', {
        contacts: result
      })
@@ -46,7 +48,8 @@ router.post('/contacts/new', function(req,res) {
   } else {
     var newContact = new Contact({
       name:req.body.name,
-      number:req.body.number
+      number:req.body.number,
+      owner: req.user
     });
     console.log(newContact)
     newContact.save(function(error, result) {
@@ -59,6 +62,17 @@ router.post('/contacts/new', function(req,res) {
   }
 })
 
+router.post('/contacts/new/:id', function(req, res) {
+  var id = req.params.id;
+  Contact.findByIdAndUpdate(id,{name:req.body.name, number:req.body.number}, function(error, result) {
+    if(error) {
+      res.send("There was an an error finding your ID and Updating")
+    } else {
+      res.redirect('/contacts')
+    }
+  })
+
+})
 
 /* GET home page. */
 // router.get('/', function(req, res, next) {

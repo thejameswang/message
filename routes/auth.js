@@ -1,15 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var models = require('../models/models');
-var User = models.User;
-
-router.use(function(req, res, next){
-  if (!req.user) {
-    res.redirect('/login');
-  } else {
-    return next();
-  }
-});
 
 module.exports = function(passport) {
   // Add Passport-related auth routes here, to the router!
@@ -53,9 +44,9 @@ module.exports = function(passport) {
     });
   });
 
-  router.get('/', function(req, res) {
-    res.render('login')
-  })
+  router.get('/login', function(req, res) {
+    res.render('login');
+  });
 
   router.post('/login',passport.authenticate('local'), function(req,res) {
     res.redirect('/')

@@ -7,6 +7,9 @@ var session = require('express-session');
 var routes = require('./routes/index');
 var auth = require('./routes/auth');
 var exphbs = require('express-handlebars');
+var passport = require('passport');
+var LocalStrategy = require('passport-local');
+var models = require('./models/models')
 // require node modules here
 // YOUR CODE HERE
 
@@ -99,3 +102,5 @@ app.use(function(err, req, res, next) {
 
 
 module.exports = app;
+console.log('Express started. Listening on port', process.env.PORT || 3000);
+app.listen(process.env.PORT || 3000);

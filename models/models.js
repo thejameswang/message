@@ -16,7 +16,7 @@ var userSchema = new Schema({
 })
 
 // Step 2: Create all of your models here, as properties.
-var User mongoose.model('User', userSchema)
+var User = mongoose.model('User', userSchema)
 // Step 3: Export your models object
 module.exports = {
   User: User

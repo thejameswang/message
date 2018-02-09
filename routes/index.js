@@ -10,6 +10,10 @@ router.use(function(req, res, next){
     return next();
   }
 });
+
+router.get('/contacts', function(req, res) {
+   res.send('Successful login');
+ });
 /* GET home page. */
 // router.get('/', function(req, res, next) {
 //   // Your code here.

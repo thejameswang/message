@@ -29,18 +29,22 @@ module.exports = function(passport) {
         error: "Passwords don't match."
       });
     }
+    // console.log(req.body)
     var u = new models.User({
       username: req.body.username,
       password: req.body.password,
     });
+    // console.log(u)
     u.save(function(err, user) {
       if (err) {
         console.log(err);
-        res.status(500).redirect('/register');
+        res.status(500).redirect('/signup');
         return;
+      } else {
+        // console.log(user);
+        res.redirect('/login');
       }
-      console.log(user);
-      res.redirect('/login');
+      // console.log(user);
     });
   });
 
@@ -49,6 +53,7 @@ module.exports = function(passport) {
   });
 
   router.post('/login',passport.authenticate('local'), function(req,res) {
+    console.log('post login')
     res.redirect('/')
   })
 

@@ -10,6 +10,9 @@ var exphbs = require('express-handlebars');
 var passport = require('passport');
 var LocalStrategy = require('passport-local');
 var models = require('./models/models')
+var MongoStore = require('connect-mongo')(session);
+var mongoose = require('mongoose')
+var User = models.User
 // require node modules here
 // YOUR CODE HERE
 
@@ -27,14 +30,24 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Passport stuff here
-app.use(session({secret: 'keyboard cat'}));
+// app.use(session({secret: 'keyboard cat'}));
+app.use(session({
+  secret: process.env.SECRET,
+  name: 'Catscookies',
+  store: new MongoStore({mongooseConnection: mongoose.connection}),
+  proxy: true,
+  resave: true,
+  saveUninitialized: true
+}))
 // YOUR CODE HERE
 passport.serializeUser(function(user, done) {
+  console.log('lets serialize')
   done(null, user._id);
 });
 
 passport.deserializeUser(function(id, done) {
-  User.findByid(id, function(err, user) {
+  console.log('lets deserialize')
+  User.findById(id, function(err, user) {
     done(err, user);
   })
 });
@@ -58,6 +71,7 @@ passport.use(new LocalStrategy(function(username, password, done) {
       return done(null, false);
     }
     // auth has has succeeded
+    console.log('auth has succeeeded')
     return done(null, user);
   });
 }));

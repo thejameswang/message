@@ -1,14 +1,21 @@
 <h3>Contacts Page</h3>
-
-{{#each contacts}}
-  <tr>
-    <td>Name: {{this.name}}</td>
-    <td>Name: {{this.name}}</td>
-    <td><button type="button" name="button">Send Text</button></td>
-    <td><button type="button" name="button">View messages</button></td>
-    <td><button type="button" name="button">Edit Contact</button></td>
-  </tr>
-{{/each}}
-<a href="/contacts/new"><button type="button" name="button">Add contact</button></a> 
-<button type="button" name="button">View all messages</button>
-<a href="/logout"><button class="btn btn-warning"type="button" name="button">Logout</button></a>
+<div class="Contacts">
+  <table>
+    <tr>
+      <th>Contacts</th>
+    </tr>
+    {{#each contacts}}
+      <tr>
+        <td><h4>{{this.name}} ({{this.number}})</h4></td>
+        <td><button type="button" name="button">Send Text</button></td>
+        <td><button type="button" name="button">View messages</button></td>
+        <td><a href="/contacts/{{this.id}}"><button type="button" name="button">View Contact</button></a></td>
+      </tr>
+    {{/each}}
+  </table>
+</div>
+<div class="footer">
+  <a href="/contacts/new"><button type="button" name="button">Add contact</button></a>
+  <button type="button" name="button">View all messages</button>
+  <a href="/logout"><button class="btn btn-warning"type="button" name="button">Logout</button></a>
+</div>

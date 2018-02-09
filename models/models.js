@@ -28,7 +28,7 @@ var userSchema = new Schema({
 
 var contactSchema = new Schema({
   name: String,
-  phone: String,
+  number: String,
   owner: {
     type: mongoose.Schema.ObjectId,
     ref: 'User'

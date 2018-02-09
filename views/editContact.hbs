@@ -1,14 +1,14 @@
-<form class="well form-horizontal" action="/contacts/new" method="post">
+<form class="well form-horizontal" action="/contacts/new/{{id}}" method="post">
   <div class='form-group row'>
     <label for="staticEmail" class="col-xs-2 col-xs-offset-2 control-label">Contact Name</label>
     <div class="col-xs-4 input-group">
-      <input type="text" class="form-control" name="name" placeholder="Name">
+      <input type="text" class="form-control" name="name" placeholder="Name" required value ="{{name}}">
     </div>
   </div>
   <div class='form-group row'>
     <label for="staticEmail" class="col-xs-2 col-xs-offset-2 control-label">Phone Number</label>
     <div class="col-xs-4 input-group">
-      <input type="text" class="form-control" name="number" placeholder="number">
+      <input type="text" class="form-control" name="number" placeholder="number" required value = "{{number}}">
     </div>
   </div>
   <div class='form-group row text-center'>

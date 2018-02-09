@@ -10,10 +10,17 @@ router.use(function(req, res, next){
     return next();
   }
 });
-
+//<----------------- Contact Portion -------------------------->
 router.get('/contacts', function(req, res) {
-   res.send('Successful login');
+   Contact.find(function(err,result) {
+     res.send(result)
+   })
  });
+
+router.get('/contacts/new', function(req, res) {
+  res.render('editContact')
+})
+
 /* GET home page. */
 // router.get('/', function(req, res, next) {
 //   // Your code here.

@@ -26,9 +26,20 @@ var userSchema = new Schema({
   phone: String
 })
 
+var contactSchema = new Schema({
+  name: String,
+  phone: String,
+  owner: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User'
+  }
+})
+
 // Step 2: Create all of your models here, as properties.
 var User = mongoose.model('User', userSchema)
+var Contact = mongoose.model('Contact', contactSchema)
 // Step 3: Export your models object
 module.exports = {
-  User: User
+  User: User,
+  Contact: Contact
 }

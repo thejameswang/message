@@ -1,0 +1,14 @@
+<h3>Contacts Page</h3>
+
+{{#each contacts}}
+  <tr>
+    <td>Name: {{this.name}}</td>
+    <td>Name: {{this.name}}</td>
+    <td><button type="button" name="button">Send Text</button></td>
+    <td><button type="button" name="button">View messages</button></td>
+    <td><button type="button" name="button">Edit Contact</button></td>
+  </tr>
+{{/each}}
+<a href="/contacts/new"><button type="button" name="button">Add contact</button></a> 
+<button type="button" name="button">View all messages</button>
+<a href="/logout"><button class="btn btn-warning"type="button" name="button">Logout</button></a>

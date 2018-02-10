@@ -13,6 +13,24 @@ router.use(function(req, res, next){
     return next();
   }
 });
+//<--------------------- MY_TWILIO_NUMBER part ------------------->
+var accountSide = proccess.env.TWILIO_SID;
+var authToken = process.env.TWILIO_AUTH_TOKEN;
+var fromNumber = process.env.MY_TWILIO_NUMBER;
+
+var twilio = require('twilio');
+var client = new twilio(accountSid, authToken);
+//<----------------- Twilio Routes ------------------------------>
+router.get('/messages', function(req,res) {
+  Message.find({owner:req.user}, function(err, result) {
+    res.render('messages', {
+      message: result
+    })
+  })
+
+})
+
+
 //<----------------- Contact Portion -------------------------->
 router.get('/contacts', function(req, res) {
   console.log(req.user)

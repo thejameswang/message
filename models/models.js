@@ -35,11 +35,27 @@ var contactSchema = new Schema({
   }
 })
 
+var messageSchema = new Schema({
+  created: Date,
+  content: String,
+  user: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User'
+  },
+  contact: {
+    type: mongoose.Schema.ObjectId,
+    ref:'Contact'
+  },
+  channel: String
+})
+
 // Step 2: Create all of your models here, as properties.
 var User = mongoose.model('User', userSchema)
 var Contact = mongoose.model('Contact', contactSchema)
+var Message = mongoose.model('Message', messageSchema)
 // Step 3: Export your models object
 module.exports = {
   User: User,
-  Contact: Contact
+  Contact: Contact,
+  Message: Message
 }

@@ -22,12 +22,13 @@ var twilio = require('twilio');
 var client = new twilio(accountSid, authToken);
 //<----------------- Twilio Routes ------------------------------>
 router.get('/messages', function(req,res) {
-  Message.find({owner:req.user}, function(err, result) {
+  Message.find
+  .populate('contact')
+  .exec({owner:req.user}, function(err, result) {
     res.render('messages', {
       message: result
     })
   })
-
 })
 
 
